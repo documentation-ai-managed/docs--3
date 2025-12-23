@@ -1,0 +1,124 @@
+---
+title: Changelog
+description: Track the latest updates, improvements, and new features released in * to keep your documentation management up to date.
+---
+
+## Recent Releases
+
+Stay informed about every release. Review the changelogs below to understand new capabilities, breaking changes, and fixes that impact your documentation workflows.
+
+<Update label="2024-10-15" description="v1.2.0" tags={["feature", "improvement"]}>
+
+## New Features
+
+- Added real-time collaboration for multi-user editing sessions
+- Introduced custom brand color support (`#3B82F6` default) for themed documentation
+- New `{variable}` interpolation in MDX frontmatter for dynamic titles
+
+## Improvements
+
+- Enhanced search performance by `>50%` for large doc sites
+- Better mobile responsiveness with adaptive Columns layouts
+
+## Bug Fixes
+
+- Fixed parsing errors with nested code blocks in Steps components
+- Resolved expandable state persistence on page reloads
+
+</Update>
+
+<Update label="2024-09-20" description="v1.1.0" tags={["bugfix", "improvement"]}>
+
+## Improvements
+
+- Optimized Mermaid diagram rendering for complex graphs
+- Added syntax highlighting for `15+` new languages in CodeGroup
+
+## Bug Fixes
+
+- Corrected ParamField location attribute conflicts (path vs query)
+- Fixed Callout kind prop validation for custom themes
+
+</Update>
+
+<Update label="2024-08-10" description="v1.0.0" tags={["feature", "breaking"]}>
+
+## New Features
+
+- Core MDX component library with Cards, Steps, Tabs, and more
+- Integrated API documentation tools (Request, Response, ParamField)
+- Full support for Lucide icons in all interactive elements
+
+## Breaking Changes
+
+- Updated attribute syntax to require double quotes for strings
+- Mermaid now strictly uses code block format (no `<Mermaid>` component)
+
+</Update>
+
+## Key Highlights
+
+These releases focus on stability and developer experience. Use the grid below to quickly navigate major themes.
+
+<Columns cols={3}>
+  <Card title="Collaboration" icon="users" href="#recent-releases">
+    Edit docs together in real-time without conflicts.
+  </Card>
+  <Card title="Performance" icon="zap" href="#recent-releases">
+    Faster rendering and search for large projects.
+  </Card>
+  <Card title="Developer Tools" icon="code" href="#recent-releases">
+    Rich components for API and code documentation.
+  </Card>
+</Columns>
+
+## Migration Steps
+
+Upgrade smoothly with these verified steps. Test in a staging environment first.
+
+<Steps>
+  <Step title="Backup Your Site" icon="archive">
+    Export your current docs to avoid data loss.
+
+    ```
+    npx * export --output ./backup
+    ```
+  </Step>
+  <Step title="Update Package" icon="package">
+    Install the latest version.
+
+    <CodeGroup tabs="npm,yarn">
+    ````bash
+    npm install *@latest
+    ````
+
+    ````bash
+    yarn add *@latest
+    ````
+    </CodeGroup>
+  </Step>
+  <Step title="Review Breaking Changes" icon="alert-triangle">
+    Scan for deprecated props like single-quoted attributes.
+  </Step>
+  <Step title="Test Components" icon="play">
+    Verify Steps, Tabs, and Mermaid diagrams parse correctly.
+  </Step>
+</Steps>
+
+<Callout kind="tip">
+  Subscribe to our RSS feed at `https://docs.example.com/rss.xml` or join the Discord for instant notifications on new releases.
+</Callout>
+
+## Upcoming Features
+
+Preview what's next to plan your workflows.
+
+<Expandable title="v1.3.0 Roadmap" default-open="true">
+
+- AI-powered content suggestions
+- Native video transcription embeds
+- Advanced analytics dashboard at `https://dashboard.example.com`
+
+Check back monthly for progress updates.
+
+</Expandable>

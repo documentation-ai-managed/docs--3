@@ -1,0 +1,176 @@
+---
+title: Configuring Your Documentation Space
+description: Customize your * space to fit your project's needs, including branding, permissions, and advanced settings.
+---
+
+## Overview
+
+Configure your * documentation space to match your project's branding, control access, integrate with tools, and ensure data safety. Start with basic settings like brand colors, then manage permissions and set up integrations. Use the dashboard at `https://dashboard.example.com/settings` to make changes.
+
+<Callout kind="tip">
+  Save changes after each section to apply them immediately. Test in a preview mode if available.
+</Callout>
+
+## Quick Access
+
+<Columns cols={2}>
+  <Card title="Branding" icon="palette" href="#branding">
+    Set colors and themes.
+  </Card>
+  <Card title="Permissions" icon="users" href="#permissions">
+    Manage roles and access.
+  </Card>
+  <Card title="Integrations" icon="plug" href="#integrations">
+    Connect external tools.
+  </Card>
+  <Card title="Backups" icon="database" href="#backups">
+    Export and secure data.
+  </Card>
+</Columns>
+
+## Setting Brand Colors and Themes
+
+Customize your space's appearance to align with your brand. Update the primary color, logo, and theme mode.
+
+<Steps>
+  <Step title="Access Settings" icon="settings">
+    Navigate to `https://dashboard.example.com/settings/branding`.
+  </Step>
+  <Step title="Update Brand Color" icon="palette">
+    Enter your hex code, such as `#3B82F6` for a blue theme.
+  </Step>
+  <Step title="Choose Theme" icon="moon">
+    Select light, dark, or auto mode.
+  </Step>
+  <Step title="Preview and Save" icon="check-circle">
+    Preview changes and click Save.
+  </Step>
+</Steps>
+
+```json
+{
+  "brandColor": "#3B82F6",
+  "theme": "auto",
+  "logoUrl": "https://your-logo.example.com/logo.png"
+}
+```
+
+<Callout kind="info">
+  Brand color affects buttons, links, and accents. Use tools like coolors.co to generate palettes.
+</Callout>
+
+## Managing User Permissions and Roles
+
+Control who can view, edit, or admin your documentation.
+
+| Role       | View | Edit | Delete | Invite Users |
+|------------|------|------|--------|--------------|
+| Viewer     | ✅   | ❌   | ❌     | ❌           |
+| Editor     | ✅   | ✅   | ❌     | ❌           |
+| Admin      | ✅   | ✅   | ✅     | ✅           |
+
+<Tabs>
+  <Tab title="Add User" icon="user-plus">
+    1. Go to `https://dashboard.example.com/settings/users`.
+    2. Enter email and select role.
+    3. Send invite.
+  </Tab>
+  <Tab title="Role Permissions" icon="shield">
+    Customize per project:
+    
+````json
+{
+  "projectId": "proj_123",
+  "roles": {
+    "editor": ["read", "write"],
+    "admin": ["read", "write", "delete", "manage_users"]
+  }
+}
+````
+  </Tab>
+</Tabs>
+
+<Expandable title="Advanced Role Customization" default-open="false">
+  Use API to set granular permissions:
+  
+  <Request tabs="cURL,JavaScript">
+  ```
+  curl -X POST https://api.example.com/v1/permissions \
+    -H "Authorization: Bearer YOUR_API_KEY" \
+    -d '{"userId": "user_456", "permissions": ["edit_pages"]}'
+  ```
+  ```javascript
+  const response = await fetch('https://api.example.com/v1/permissions', {
+    method: 'POST',
+    headers: {
+      'Authorization': 'Bearer YOUR_API_KEY',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      userId: 'user_456',
+      permissions: ['edit_pages']
+    })
+  });
+  ```
+  </Request>
+</Expandable>
+
+## Configuring Integrations
+
+Connect * to tools like GitHub, Slack, or webhooks.
+
+<CodeGroup tabs="GitHub,Webhook">
+```json
+{
+  "integration": "github",
+  "repo": "your-org/your-repo",
+  "webhookSecret": "YOUR_SECRET"
+}
+```
+```json
+{
+  "integration": "webhook",
+  "url": "https://your-webhook-url.com/webhook",
+  "events": ["page_updated", "user_invited"]
+}
+```
+</CodeGroup>
+
+<ParamField body="integration" param-type="string" required="true">
+  Type of integration: `github`, `slack`, `webhook`.
+</ParamField>
+
+<ParamField body="config.repo" param-type="string">
+  Repository name for GitHub sync.
+</ParamField>
+
+## Exporting and Backups
+
+Protect your content with regular exports.
+
+<Steps>
+  <Step title="Manual Export" icon="download">
+    Visit `https://dashboard.example.com/settings/export` and select Markdown or PDF.
+  </Step>
+  <Step title="Schedule Backup" icon="calendar">
+    Set frequency: daily, weekly.
+  </Step>
+  <Step title="Download" icon="save">
+    Retrieve ZIP from your storage.
+  </Step>
+</Steps>
+
+<Callout kind="alert">
+  Enable automatic backups to avoid data loss. Store exports securely off-site.
+</Callout>
+
+## Troubleshooting Common Issues
+
+<ExpandableGroup>
+  <Expandable title="Changes Not Applying" default-open="true">
+    Clear cache at `https://dashboard.example.com/settings/cache`. Wait 5 minutes for propagation.
+  </Expandable>
+  <Expandable title="Permission Errors">
+    Verify user roles and project scopes. Check API logs for details.
+  </Expandable>
+</ExpandableGroup>
